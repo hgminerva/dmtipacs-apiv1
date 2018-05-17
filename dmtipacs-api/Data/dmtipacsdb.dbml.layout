@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 16.5" name="dmtipacsdb">
+  <DataContextMoniker Name="/dmtipacsdbDataContext" />
+  <nestedChildShapes>
+    <classShape Id="77031545-8c5f-473d-9504-bd81be9ebcbf" absoluteBounds="0.75, 6.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/AspNetRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="48ca4708-83aa-49ae-862a-512e563cf4f4" absoluteBounds="0.765, 7.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4e44c096-9e1d-49ee-aae6-d69c0d4ea743" absoluteBounds="12, 8.75, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/TrnProcedureResult" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec67bd74-462e-4b03-8a32-66c9331f54ee" absoluteBounds="12.015, 9.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2a0763ff-1204-4b88-b6b4-7430fc2c1292" absoluteBounds="3.5, 13.25, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/AspNetUserClaim" />
+      <nestedChildShapes>
+        <elementListCompartment Id="104222ac-a63b-474f-bade-9ee62711c657" absoluteBounds="3.515, 13.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="17f7f9d4-24e1-4b61-b257-771103f966c2" absoluteBounds="3.5, 11.125, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/AspNetUserLogin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="43e7eb5b-2e0d-40be-9b2f-83fb43fe2f1e" absoluteBounds="3.515, 11.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="68529445-f8c0-48f6-b87e-27247f857e09" absoluteBounds="3.5, 8.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/AspNetUserRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="107fef3c-eae1-4e67-9d0f-a58a1add529c" absoluteBounds="3.515, 9.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2bc7e12a-205e-490d-844b-7ee8c7a1ce78" absoluteBounds="0.75, 9.375, 2, 3.5016097005208344">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/AspNetUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4ce0545c-0814-4abc-a126-8de4d27d6728" absoluteBounds="0.765, 9.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d0cee1bf-265e-4c94-a27d-8a78437e6e45" absoluteBounds="9.5, 13.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/MstBodyPart" />
+      <nestedChildShapes>
+        <elementListCompartment Id="38435868-29c0-434b-a56b-f4e81e42cc4b" absoluteBounds="9.515, 14.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d08e2ba9-758e-45fe-8a9c-7d0d560b492a" absoluteBounds="6.5, 7.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/MstModality" />
+      <nestedChildShapes>
+        <elementListCompartment Id="62702f87-2dbd-40b9-ae41-ae0501d30f6d" absoluteBounds="6.515, 8.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7da578ca-b9e0-4c08-9e68-cfb444c11987" absoluteBounds="9.25, 7.25, 2, 1.7708968098958335">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/MstModalityProcedure" />
+      <nestedChildShapes>
+        <elementListCompartment Id="599d000a-b59f-4aa0-9721-0b691e4eeaa0" absoluteBounds="9.265, 7.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dcad9d59-ddae-4b12-b6d0-8452963c1fd8" absoluteBounds="6.5, 10.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/MstUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fe6a02ad-64c3-4a6e-92a2-87b5e8ab0cad" absoluteBounds="6.515, 10.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="228725ba-1bbc-461f-9aeb-46113f4950de" absoluteBounds="9.25, 10.5, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/MstUserDoctor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4dd7e2ef-caec-4225-ad25-5d9dfc45221e" absoluteBounds="9.265, 10.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2f6c4b2a-72dc-40e7-a608-15b58bc24b68" absoluteBounds="12, 5.625, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/MstUserRate" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b3b45f11-19e7-4a19-b034-5b2559db2141" absoluteBounds="12.015, 6.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="29a2c97d-5c66-460d-afff-f14696ad0b70" absoluteBounds="3.75, 6.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/MstUserType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e927ef2b-4571-4a16-8cd0-93ad383b5e7e" absoluteBounds="3.765, 7.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9110c15c-fb97-4384-a440-bd382d0cc9fe" absoluteBounds="12.25, 12, 2, 4.2708154296874987">
+      <DataClassMoniker Name="/dmtipacsdbDataContext/TrnProcedure" />
+      <nestedChildShapes>
+        <elementListCompartment Id="10f37ced-8719-4029-bce4-9f49188dc872" absoluteBounds="12.265, 12.46, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 7.81899251302083); (3.125 : 8.19399251302083); (3.125 : 8.25); (3.5 : 8.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/AspNetRole/AspNetRole_AspNetUserRole" />
+      <nodes>
+        <classShapeMoniker Id="77031545-8c5f-473d-9504-bd81be9ebcbf" />
+        <classShapeMoniker Id="68529445-f8c0-48f6-b87e-27247f857e09" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 12.8766097005208); (1.75 : 14.1354484049479); (3.5 : 14.1354484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/AspNetUser/AspNetUser_AspNetUserClaim" />
+      <nodes>
+        <classShapeMoniker Id="2bc7e12a-205e-490d-844b-7ee8c7a1ce78" />
+        <classShapeMoniker Id="2a0763ff-1204-4b88-b6b4-7430fc2c1292" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 11.8181469726562); (3.5 : 11.8181469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/AspNetUser/AspNetUser_AspNetUserLogin" />
+      <nodes>
+        <classShapeMoniker Id="2bc7e12a-205e-490d-844b-7ee8c7a1ce78" />
+        <classShapeMoniker Id="17f7f9d4-24e1-4b61-b257-771103f966c2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 9.59699625651042); (3.5 : 9.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/AspNetUser/AspNetUser_AspNetUserRole" />
+      <nodes>
+        <classShapeMoniker Id="2bc7e12a-205e-490d-844b-7ee8c7a1ce78" />
+        <classShapeMoniker Id="68529445-f8c0-48f6-b87e-27247f857e09" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 9.02089680989583); (11.625 : 9.39589680989583); (11.625 : 8.375); (12 : 8.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstModalityProcedure/MstModalityProcedure_TrnProcedureResult" />
+      <nodes>
+        <classShapeMoniker Id="7da578ca-b9e0-4c08-9e68-cfb444c11987" />
+        <classShapeMoniker Id="4e44c096-9e1d-49ee-aae6-d69c0d4ea743" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 8.22199625651042); (8.79166666666667 : 8.22199625651042 : JumpStart); (8.95833333333333 : 8.22199625651042 : JumpEnd); (8.97916666666667 : 8.22199625651042 : JumpStart); (9.14583333333333 : 8.22199625651042 : JumpEnd); (9.25 : 8.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstModality/MstModality_MstModalityProcedure" />
+      <nodes>
+        <classShapeMoniker Id="d08e2ba9-758e-45fe-8a9c-7d0d560b492a" />
+        <classShapeMoniker Id="7da578ca-b9e0-4c08-9e68-cfb444c11987" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 10.28125); (11.6666666666667 : 10.28125 : JumpStart); (11.8333333333333 : 10.28125 : JumpEnd); (12 : 10.28125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstUser/MstUser_TrnProcedureResult" />
+      <nodes>
+        <classShapeMoniker Id="dcad9d59-ddae-4b12-b6d0-8452963c1fd8" />
+        <classShapeMoniker Id="4e44c096-9e1d-49ee-aae6-d69c0d4ea743" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 10.2203836153846); (9.0625 : 9.65788361538462); (9.0625 : 7.70474612825521); (9.25 : 7.70474612825521)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstUser/MstUser_MstModalityProcedure" />
+      <nodes>
+        <classShapeMoniker Id="dcad9d59-ddae-4b12-b6d0-8452963c1fd8" />
+        <classShapeMoniker Id="7da578ca-b9e0-4c08-9e68-cfb444c11987" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 10.59375); (6.5 : 10.59375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/AspNetUser/AspNetUser_MstUser" />
+      <nodes>
+        <classShapeMoniker Id="2bc7e12a-205e-490d-844b-7ee8c7a1ce78" />
+        <classShapeMoniker Id="dcad9d59-ddae-4b12-b6d0-8452963c1fd8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 11.1931469726562); (9.25 : 11.1931469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstUser/MstUser_MstUserDoctor" />
+      <nodes>
+        <classShapeMoniker Id="dcad9d59-ddae-4b12-b6d0-8452963c1fd8" />
+        <classShapeMoniker Id="228725ba-1bbc-461f-9aeb-46113f4950de" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 10.7840734863281); (9.25 : 10.7840734863281)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstUser/MstUser_MstUserDoctor1" />
+      <nodes>
+        <classShapeMoniker Id="dcad9d59-ddae-4b12-b6d0-8452963c1fd8" />
+        <classShapeMoniker Id="228725ba-1bbc-461f-9aeb-46113f4950de" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 7.61140055338542); (12 : 7.61140055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstModalityProcedure/MstModalityProcedure_MstUserRate" />
+      <nodes>
+        <classShapeMoniker Id="7da578ca-b9e0-4c08-9e68-cfb444c11987" />
+        <classShapeMoniker Id="2f6c4b2a-72dc-40e7-a608-15b58bc24b68" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.46769230769231 : 10.125); (8.875 : 9.71769230769231); (8.875 : 6.4062505); (12 : 6.4062505)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstUser/MstUser_MstUserRate" />
+      <nodes>
+        <classShapeMoniker Id="dcad9d59-ddae-4b12-b6d0-8452963c1fd8" />
+        <classShapeMoniker Id="2f6c4b2a-72dc-40e7-a608-15b58bc24b68" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.65625 : 7.81899251302083); (5.65625 : 10.3281225); (6.5 : 10.3281225)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstUserType/MstUserType_MstUser" />
+      <nodes>
+        <classShapeMoniker Id="29a2c97d-5c66-460d-afff-f14696ad0b70" />
+        <classShapeMoniker Id="dcad9d59-ddae-4b12-b6d0-8452963c1fd8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.125 : 12); (13.125 : 10.7131982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/TrnProcedure/TrnProcedure_TrnProcedureResult" />
+      <nodes>
+        <classShapeMoniker Id="9110c15c-fb97-4384-a440-bd382d0cc9fe" />
+        <classShapeMoniker Id="4e44c096-9e1d-49ee-aae6-d69c0d4ea743" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.5 : 14.2219962565104); (12.25 : 14.2219962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstBodyPart/MstBodyPart_TrnProcedure" />
+      <nodes>
+        <classShapeMoniker Id="d0cee1bf-265e-4c94-a27d-8a78437e6e45" />
+        <classShapeMoniker Id="9110c15c-fb97-4384-a440-bd382d0cc9fe" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 8.55174638476563); (8.75 : 8.55174638476563); (8.75 : 9.27089680989583); (8.79166666666667 : 9.27089680989583 : JumpStart); (8.95833333333333 : 9.27089680989583 : JumpEnd); (8.97916666666667 : 9.27089680989583 : JumpStart); (9.14583333333333 : 9.27089680989583 : JumpEnd); (11.4166666666667 : 9.27089680989583 : JumpStart); (11.7083333333333 : 9.27089680989583 : JumpEnd); (11.75 : 9.27089680989583); (11.75 : 10.9631982421875); (13.0416666666667 : 10.9631982421875 : JumpStart); (13.2083333333333 : 10.9631982421875 : JumpEnd); (13.718752 : 10.9631982421875); (13.718752 : 12)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstModality/MstModality_TrnProcedure" />
+      <nodes>
+        <classShapeMoniker Id="d08e2ba9-758e-45fe-8a9c-7d0d560b492a" />
+        <classShapeMoniker Id="9110c15c-fb97-4384-a440-bd382d0cc9fe" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.5 : 12.2804996744792); (7.5 : 15.5761539713542); (12.25 : 15.5761539713542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dmtipacsdbDataContext/MstUser/MstUser_TrnProcedure" />
+      <nodes>
+        <classShapeMoniker Id="dcad9d59-ddae-4b12-b6d0-8452963c1fd8" />
+        <classShapeMoniker Id="9110c15c-fb97-4384-a440-bd382d0cc9fe" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
