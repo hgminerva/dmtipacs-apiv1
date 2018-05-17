@@ -248,6 +248,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dmtipacsdb.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Entities\MstBodyPart.cs" />
+    <Compile Include="Entities\MstModality.cs" />
+    <Compile Include="Entities\MstModalityProcedure.cs" />
+    <Compile Include="Entities\MstUser.cs" />
+    <Compile Include="Entities\MstUserDoctor.cs" />
+    <Compile Include="Entities\MstUserRate.cs" />
+    <Compile Include="Entities\MstUserType.cs" />
+    <Compile Include="Entities\TrnProcedure.cs" />
+    <Compile Include="Entities\TrnProcedureResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -326,7 +335,6 @@
   <ItemGroup>
     <Folder Include="ApiControllers\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
