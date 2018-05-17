@@ -307,7 +307,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ApiControllers\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
