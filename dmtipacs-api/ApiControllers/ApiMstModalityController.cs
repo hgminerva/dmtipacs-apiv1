@@ -7,8 +7,7 @@ using System.Web.Http;
 
 namespace dmtipacs_api.ApiControllers
 {
-    [Authorize]
-    [RoutePrefix("api/modality")]
+    [Authorize, RoutePrefix("api/modality")]
     public class ApiMstModalityController : ApiController
     {
         // ============

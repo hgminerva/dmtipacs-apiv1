@@ -11,6 +11,6 @@ namespace dmtipacs_api.Entities
         public Int32 ModalityId { get; set; }
         public String ModalityProcedure { get; set; }
         public String ModalityResultTemplate { get; set; }
-        public Int32 DoctorId { get; set; }
+        public Int32? DoctorId { get; set; }
     }
 }

@@ -7,8 +7,7 @@ using System.Web.Http;
 
 namespace dmtipacs_api.ApiControllers
 {
-    [Authorize]
-    [RoutePrefix("api/bodyPart")]
+    [Authorize, RoutePrefix("api/bodyPart")]
     public class ApiMstBodyPartController : ApiController
     {
         // ============
