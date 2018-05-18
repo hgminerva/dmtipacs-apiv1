@@ -214,6 +214,7 @@
     <Compile Include="ApiControllers\ApiMstUserRateController.cs" />
     <Compile Include="ApiControllers\ApiMstUserTypeController.cs" />
     <Compile Include="ApiControllers\ApiTrnProcedureController.cs" />
+    <Compile Include="ApiControllers\ApiTrnProcedureResultController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
