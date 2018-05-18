@@ -37,7 +37,7 @@ namespace dmtipacs_api.ApiControllers
         // ========================
         // Add - Modality Procedure
         // ========================
-        [Authorize, HttpPost, Route("add")]
+        [HttpPost, Route("add")]
         public HttpResponseMessage AddModalityProcedure(Entities.MstModalityProcedure objModalityProcedure)
         {
             try
@@ -57,14 +57,14 @@ namespace dmtipacs_api.ApiControllers
             }
             catch
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
         // ===========================
         // Update - Modality Procedure
         // ===========================
-        [Authorize, HttpPost, Route("update/{id}")]
+        [HttpPut, Route("update/{id}")]
         public HttpResponseMessage UpdateModalityProcedure(String id, Entities.MstModalityProcedure objModalityProcedure)
         {
             try
@@ -92,14 +92,14 @@ namespace dmtipacs_api.ApiControllers
             }
             catch
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
         // ===========================
         // Delete - Modality Procedure
         // ===========================
-        [Authorize, HttpPost, Route("delete/{id}")]
+        [HttpDelete, Route("delete/{id}")]
         public HttpResponseMessage DeleteModalityProcedure(String id)
         {
             try
@@ -122,7 +122,7 @@ namespace dmtipacs_api.ApiControllers
             }
             catch
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
     }

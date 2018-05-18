@@ -209,6 +209,9 @@
     <Compile Include="ApiControllers\ApiMstBodyPartController.cs" />
     <Compile Include="ApiControllers\ApiMstModalityController.cs" />
     <Compile Include="ApiControllers\ApiMstModalityProcedureController.cs" />
+    <Compile Include="ApiControllers\ApiMstUserController.cs" />
+    <Compile Include="ApiControllers\ApiMstUserDoctorController.cs" />
+    <Compile Include="ApiControllers\ApiMstUserRateController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />

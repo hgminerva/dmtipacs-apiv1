@@ -34,7 +34,7 @@ namespace dmtipacs_api.ApiControllers
         // ===============
         // Add - Body Part
         // ===============
-        [Authorize, HttpPost, Route("add")]
+        [HttpPost, Route("add")]
         public HttpResponseMessage AddBodyPart(Entities.MstBodyPart objBodyPart)
         {
             try
@@ -51,14 +51,14 @@ namespace dmtipacs_api.ApiControllers
             }
             catch
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
         // ==================
         // Update - Body Part
         // ==================
-        [Authorize, HttpPut, Route("update/{id}")]
+        [HttpPut, Route("update/{id}")]
         public HttpResponseMessage UpdateBodyPart(String id, Entities.MstBodyPart objBodyPart)
         {
             try
@@ -83,14 +83,14 @@ namespace dmtipacs_api.ApiControllers
             }
             catch
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
 
         // ==================
         // Delete - Body Part
         // ==================
-        [Authorize, HttpDelete, Route("delete/{id}")]
+        [HttpDelete, Route("delete/{id}")]
         public HttpResponseMessage DeleteBodyPart(String id)
         {
             try
@@ -113,7 +113,7 @@ namespace dmtipacs_api.ApiControllers
             }
             catch
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
     }
