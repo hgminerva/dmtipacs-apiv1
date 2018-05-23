@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -7,7 +8,7 @@ using System.Web.Http;
 
 namespace dmtipacs_api.ApiControllers
 {
-    [Authorize, RoutePrefix("api/bodyPart")]
+    [Authorize, RoutePrefix("api/bodyParts")]
     public class ApiMstBodyPartController : ApiController
     {
         // ============
@@ -21,7 +22,7 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("list")]
         public List<Entities.MstBodyPart> ListBodyPart()
         {
-            var bodyParts = from d in db.MstBodyParts
+            var bodyParts = from d in db.MstBodyParts.OrderByDescending(d => d.Id)
                             select new Entities.MstBodyPart
                             {
                                 Id = d.Id,
@@ -49,8 +50,9 @@ namespace dmtipacs_api.ApiControllers
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -81,8 +83,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -111,8 +114,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }

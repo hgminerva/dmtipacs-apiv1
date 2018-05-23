@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,11 +22,12 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("list")]
         public List<Entities.MstModalityProcedure> ListModalityProcedure()
         {
-            var modalityProcedures = from d in db.MstModalityProcedures
+            var modalityProcedures = from d in db.MstModalityProcedures.OrderByDescending(d => d.Id)
                                      select new Entities.MstModalityProcedure
                                      {
                                          Id = d.Id,
                                          ModalityId = d.ModalityId,
+                                         Modality = d.MstModality.Modality,
                                          ModalityProcedure = d.ModalityProcedure,
                                          ModalityResultTemplate = d.ModalityResultTemplate,
                                          DoctorId = d.DoctorId
@@ -55,8 +57,9 @@ namespace dmtipacs_api.ApiControllers
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -90,8 +93,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -120,8 +124,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
