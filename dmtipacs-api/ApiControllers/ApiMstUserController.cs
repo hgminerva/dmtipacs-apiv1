@@ -38,6 +38,29 @@ namespace dmtipacs_api.ApiControllers
             return users.ToList();
         }
 
+        // ========================
+        // List By User Type - User
+        // ========================
+        [HttpGet, Route("list/byUserType/{userTypeId}")]
+        public List<Entities.MstUser> ListUserByUserType(String userTypeId)
+        {
+            var users = from d in db.MstUsers
+                        where d.UserTypeId == Convert.ToInt32(userTypeId)
+                        select new Entities.MstUser
+                        {
+                            Id = d.Id,
+                            UserName = d.UserName,
+                            FullName = d.FullName,
+                            Address = d.Address,
+                            ContactNumber = d.ContactNumber,
+                            UserTypeId = d.UserTypeId,
+                            UserType = d.MstUserType.UserType,
+                            AspNetUserId = d.AspNetUserId
+                        };
+
+            return users.ToList();
+        }
+
         // =============
         // Detail - User
         // =============

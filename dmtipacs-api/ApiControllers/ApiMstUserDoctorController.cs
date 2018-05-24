@@ -22,7 +22,7 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("list/{userId}")]
         public List<Entities.MstUserDoctor> ListUserDoctor(String userId)
         {
-            var userDoctors = from d in db.MstUserDoctors
+            var userDoctors = from d in db.MstUserDoctors.OrderByDescending(d => d.Id)
                               where d.UserId == Convert.ToInt32(userId)
                               select new Entities.MstUserDoctor
                               {
