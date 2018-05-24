@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace dmtipacs_api.ApiControllers
 {
@@ -21,12 +23,13 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("list")]
         public List<Entities.MstUserRate> ListUserRate()
         {
-            var userRates = from d in db.MstUserRates
+            var userRates = from d in db.MstUserRates.OrderByDescending(d => d.Id)
                             select new Entities.MstUserRate
                             {
                                 Id = d.Id,
                                 UserId = d.UserId,
                                 ModalityProcedureId = d.ModalityProcedureId,
+                                ModalityProcedure = d.MstModalityProcedure.ModalityProcedure,
                                 ModalityProcedureCode = d.ModalityProcedureCode,
                                 FacilityRate = d.FacilityRate,
                                 DoctorRate = d.DoctorRate,
@@ -45,9 +48,15 @@ namespace dmtipacs_api.ApiControllers
         {
             try
             {
+                var currentUser = from d in db.MstUsers
+                                  where d.AspNetUserId == User.Identity.GetUserId()
+                                  select d;
+
+                var currentUserId = currentUser.FirstOrDefault().Id;
+
                 Data.MstUserRate newUserRate = new Data.MstUserRate
                 {
-                    UserId = objUserRate.UserId,
+                    UserId = currentUserId,
                     ModalityProcedureId = objUserRate.ModalityProcedureId,
                     ModalityProcedureCode = objUserRate.ModalityProcedureCode,
                     FacilityRate = objUserRate.FacilityRate,
@@ -61,8 +70,9 @@ namespace dmtipacs_api.ApiControllers
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -81,8 +91,14 @@ namespace dmtipacs_api.ApiControllers
 
                 if (userRate.Any())
                 {
+                    var currentUser = from d in db.MstUsers
+                                      where d.AspNetUserId == User.Identity.GetUserId()
+                                      select d;
+
+                    var currentUserId = currentUser.FirstOrDefault().Id;
+
                     var updateUserRate = userRate.FirstOrDefault();
-                    updateUserRate.UserId = objUserRate.UserId;
+                    updateUserRate.UserId = currentUserId;
                     updateUserRate.ModalityProcedureId = objUserRate.ModalityProcedureId;
                     updateUserRate.ModalityProcedureCode = objUserRate.ModalityProcedureCode;
                     updateUserRate.FacilityRate = objUserRate.FacilityRate;
@@ -99,8 +115,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -129,8 +146,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
