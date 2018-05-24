@@ -13,6 +13,7 @@ namespace dmtipacs_api.Entities
         public String Address { get; set; }
         public String ContactNumber { get; set; }
         public Int32 UserTypeId { get; set; }
+        public String UserType { get; set; }
         public String AspNetUserId { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -49,8 +50,9 @@ namespace dmtipacs_api.ApiControllers
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -81,8 +83,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -111,8 +114,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }

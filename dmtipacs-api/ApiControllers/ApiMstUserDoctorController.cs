@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,15 +19,17 @@ namespace dmtipacs_api.ApiControllers
         // ==================
         // List - User Doctor
         // ==================
-        [HttpGet, Route("list")]
-        public List<Entities.MstUserDoctor> ListUserDoctor()
+        [HttpGet, Route("list/{userId}")]
+        public List<Entities.MstUserDoctor> ListUserDoctor(String userId)
         {
             var userDoctors = from d in db.MstUserDoctors
+                              where d.UserId == Convert.ToInt32(userId)
                               select new Entities.MstUserDoctor
                               {
                                   Id = d.Id,
                                   UserId = d.UserId,
-                                  DoctorId = d.DoctorId
+                                  DoctorId = d.DoctorId,
+                                  Doctor = d.MstUser1.FullName
                               };
 
             return userDoctors.ToList();
@@ -51,8 +54,9 @@ namespace dmtipacs_api.ApiControllers
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -84,8 +88,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -114,8 +119,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }

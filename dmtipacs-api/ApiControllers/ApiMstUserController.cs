@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -30,39 +31,34 @@ namespace dmtipacs_api.ApiControllers
                             Address = d.Address,
                             ContactNumber = d.ContactNumber,
                             UserTypeId = d.UserTypeId,
+                            UserType = d.MstUserType.UserType,
                             AspNetUserId = d.AspNetUserId
                         };
 
             return users.ToList();
         }
 
-        // ==========
-        // Add - User
-        // ==========
-        [HttpPost, Route("add")]
-        public HttpResponseMessage AddUser(Entities.MstUser objUser)
+        // =============
+        // Detail - User
+        // =============
+        [HttpGet, Route("detail/{id}")]
+        public Entities.MstUser DetailUser(String id)
         {
-            try
-            {
-                Data.MstUser newUser = new Data.MstUser
-                {
-                    UserName = objUser.UserName,
-                    FullName = objUser.FullName,
-                    Address = objUser.Address,
-                    ContactNumber = objUser.ContactNumber,
-                    UserTypeId = objUser.UserTypeId,
-                    AspNetUserId = objUser.AspNetUserId
-                };
+            var user = from d in db.MstUsers
+                       where d.Id == Convert.ToUInt32(id)
+                       select new Entities.MstUser
+                       {
+                           Id = d.Id,
+                           UserName = d.UserName,
+                           FullName = d.FullName,
+                           Address = d.Address,
+                           ContactNumber = d.ContactNumber,
+                           UserTypeId = d.UserTypeId,
+                           UserType = d.MstUserType.UserType,
+                           AspNetUserId = d.AspNetUserId
+                       };
 
-                db.MstUsers.InsertOnSubmit(newUser);
-                db.SubmitChanges();
-
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            catch
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
-            }
+            return user.FirstOrDefault();
         }
 
         // =============
@@ -80,12 +76,10 @@ namespace dmtipacs_api.ApiControllers
                 if (users.Any())
                 {
                     var updateUser = users.FirstOrDefault();
-                    updateUser.UserName = objUser.UserName;
                     updateUser.FullName = objUser.FullName;
                     updateUser.Address = objUser.Address;
                     updateUser.ContactNumber = objUser.ContactNumber;
                     updateUser.UserTypeId = objUser.UserTypeId;
-                    updateUser.AspNetUserId = objUser.AspNetUserId;
 
                     db.SubmitChanges();
 
@@ -96,38 +90,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
-            }
-        }
-
-        // =============
-        // Delete - User
-        // =============
-        [HttpDelete, Route("delete/{id}")]
-        public HttpResponseMessage DeleteUser(String id)
-        {
-            try
-            {
-                var users = from d in db.MstUsers
-                            where d.Id == Convert.ToInt32(id)
-                            select d;
-
-                if (users.Any())
-                {
-                    db.MstUsers.DeleteOnSubmit(users.First());
-                    db.SubmitChanges();
-
-                    return Request.CreateResponse(HttpStatusCode.OK);
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-            }
-            catch
-            {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
