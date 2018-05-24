@@ -213,6 +213,8 @@
     <Compile Include="ApiControllers\ApiMstUserDoctorController.cs" />
     <Compile Include="ApiControllers\ApiMstUserRateController.cs" />
     <Compile Include="ApiControllers\ApiMstUserTypeController.cs" />
+    <Compile Include="ApiControllers\ApiRepProcedureDetailReportController.cs" />
+    <Compile Include="ApiControllers\ApiRepProcedureSummaryReportController.cs" />
     <Compile Include="ApiControllers\ApiTrnProcedureController.cs" />
     <Compile Include="ApiControllers\ApiTrnProcedureResultController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
