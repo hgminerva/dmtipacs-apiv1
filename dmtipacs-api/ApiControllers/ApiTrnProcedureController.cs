@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,30 +19,25 @@ namespace dmtipacs_api.ApiControllers
         // ================
         // List - Procedure
         // ================
-        [HttpGet, Route("list")]
-        public List<Entities.TrnProcedure> ListProcedure()
+        [HttpGet, Route("list/byDateRange/{startDate}/{endDate}/{facilityId}")]
+        public List<Entities.TrnProcedure> ListProcedureByDateRange(String startDate, String endDate, String facilityId)
         {
-            var procedures = from d in db.TrnProcedures
+            var procedures = from d in db.TrnProcedures.OrderByDescending(d => d.Id)
+                             where d.UserId == Convert.ToInt32(facilityId)
+                             && d.TransactionDateTime >= Convert.ToDateTime(startDate)
+                             && d.TransactionDateTime <= Convert.ToDateTime(endDate).AddHours(24)
                              select new Entities.TrnProcedure
                              {
                                  Id = d.Id,
                                  TransactionNumber = d.TransactionNumber,
                                  TransactionDateTime = d.TransactionDateTime.ToShortDateString(),
-                                 DICOMFileName = d.DICOMFileName,
+                                 TransactionTime = d.TransactionDateTime.ToShortTimeString(),
                                  PatientName = d.PatientName,
                                  Gender = d.Gender,
-                                 DateOfBirth = d.DateOfBirth.ToShortDateString(),
                                  Age = d.Age,
-                                 Particulars = d.Particulars,
-                                 ModalityId = d.ModalityId,
-                                 BodyPartId = d.BodyPartId,
-                                 UserId = d.UserId,
-                                 PatientAddress = d.PatientAddress,
-                                 ReferringPhysician = d.ReferringPhysician,
-                                 StudyDate = d.StudyDate,
-                                 HospitalNumber = d.HospitalNumber,
-                                 HospitalWardNumber = d.HospitalWardNumber,
-                                 StudyInstanceId = d.StudyInstanceId
+                                 Modality = d.MstModality.Modality,
+                                 BodyPart = d.MstBodyPart.BodyPart,
+                                 Doctor = d.TrnProcedureResults.Any() ? d.TrnProcedureResults.Where(r => r.ProcedureId == d.Id).Select(r => r.MstUser.FullName).FirstOrDefault() : ""
                              };
 
             return procedures.ToList();
@@ -81,8 +77,9 @@ namespace dmtipacs_api.ApiControllers
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -129,8 +126,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -159,8 +157,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }

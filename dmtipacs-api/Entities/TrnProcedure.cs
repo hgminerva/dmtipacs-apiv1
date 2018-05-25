@@ -22,6 +22,7 @@ namespace dmtipacs_api.Entities
         public String Modality { get; set; }
         public String Doctor { get; set; }
         public Int32 BodyPartId { get; set; }
+        public String BodyPart { get; set; }
         public Int32 UserId { get; set; }
         public String PatientAddress { get; set; }
         public String ReferringPhysician { get; set; }
