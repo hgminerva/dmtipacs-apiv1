@@ -24,6 +24,7 @@ namespace dmtipacs_api.Entities
         public Int32 BodyPartId { get; set; }
         public String BodyPart { get; set; }
         public Int32 UserId { get; set; }
+        public String User { get; set; }
         public String PatientAddress { get; set; }
         public String ReferringPhysician { get; set; }
         public String StudyDate { get; set; }

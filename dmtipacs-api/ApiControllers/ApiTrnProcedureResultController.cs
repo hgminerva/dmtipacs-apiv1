@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -7,7 +8,7 @@ using System.Web.Http;
 
 namespace dmtipacs_api.ApiControllers
 {
-    [Authorize, RoutePrefix("api/procedureResultResult")]
+    [Authorize, RoutePrefix("api/procedureResult")]
     public class ApiTrnProcedureResultResultController : ApiController
     {
         // ============
@@ -18,18 +19,22 @@ namespace dmtipacs_api.ApiControllers
         // =======================
         // List - Procedure Result
         // =======================
-        [HttpGet, Route("list")]
-        public List<Entities.TrnProcedureResult> ListProcedureResult()
+        [HttpGet, Route("list/{procedureId}")]
+        public List<Entities.TrnProcedureResult> ListProcedureResult(String procedureId)
         {
-            var procedureResults = from d in db.TrnProcedureResults
+            var procedureResults = from d in db.TrnProcedureResults.OrderByDescending(d => d.Id)
+                                   where d.ProcedureId == Convert.ToInt32(procedureId)
                                    select new Entities.TrnProcedureResult
                                    {
                                        Id = d.Id,
                                        ProcedureId = d.ProcedureId,
                                        ModalityProcedureId = d.ModalityProcedureId,
+                                       ModalityProcedure = d.MstModalityProcedure.ModalityProcedure,
                                        Result = d.Result,
                                        DoctorId = d.DoctorId,
-                                       DoctorDateTime = d.DoctorDateTime.ToShortDateString()
+                                       Doctor = d.MstUser.FullName,
+                                       DoctorDateTime = d.DoctorDateTime.ToShortDateString(),
+                                       DoctorTime = d.DoctorDateTime.ToShortTimeString()
                                    };
 
             return procedureResults.ToList();
@@ -49,7 +54,7 @@ namespace dmtipacs_api.ApiControllers
                     ModalityProcedureId = objProcedureResult.ModalityProcedureId,
                     Result = objProcedureResult.Result,
                     DoctorId = objProcedureResult.DoctorId,
-                    DoctorDateTime = Convert.ToDateTime(objProcedureResult.DoctorDateTime)
+                    DoctorDateTime = DateTime.Now
                 };
 
                 db.TrnProcedureResults.InsertOnSubmit(newProcedureResult);
@@ -57,8 +62,9 @@ namespace dmtipacs_api.ApiControllers
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -82,7 +88,7 @@ namespace dmtipacs_api.ApiControllers
                     updateProcedureResult.ModalityProcedureId = objProcedureResult.ModalityProcedureId;
                     updateProcedureResult.Result = objProcedureResult.Result;
                     updateProcedureResult.DoctorId = objProcedureResult.DoctorId;
-                    updateProcedureResult.DoctorDateTime = Convert.ToDateTime(objProcedureResult.DoctorDateTime);
+                    updateProcedureResult.DoctorDateTime = DateTime.Now;
 
                     db.SubmitChanges();
 
@@ -93,8 +99,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -123,8 +130,9 @@ namespace dmtipacs_api.ApiControllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }

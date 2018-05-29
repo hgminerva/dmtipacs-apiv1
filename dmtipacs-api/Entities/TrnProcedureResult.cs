@@ -16,6 +16,7 @@ namespace dmtipacs_api.Entities
         public Int32 DoctorId { get; set; }
         public String Doctor { get; set; }
         public String DoctorDateTime { get; set; }
+        public String DoctorTime { get; set; }
         public String TransactionNumber { get; set; }
         public String TransactionDateTime { get; set; }
         public String Patient { get; set; }
