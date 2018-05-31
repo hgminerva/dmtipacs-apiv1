@@ -207,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\ApiMstBodyPartController.cs" />
+    <Compile Include="ApiControllers\ApiMstFacilityController.cs" />
     <Compile Include="ApiControllers\ApiMstModalityController.cs" />
     <Compile Include="ApiControllers\ApiMstModalityProcedureController.cs" />
     <Compile Include="ApiControllers\ApiMstUserController.cs" />
