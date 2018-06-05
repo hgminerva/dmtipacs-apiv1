@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace dmtipacs_api.ApiControllers
 {
@@ -22,7 +23,14 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("list")]
         public List<Entities.MstModalityProcedure> ListModalityProcedure()
         {
+            var currentUser = from d in db.MstUsers
+                              where d.AspNetUserId == User.Identity.GetUserId()
+                              select d;
+
+            var currentUserId = currentUser.FirstOrDefault().Id;
+
             var modalityProcedures = from d in db.MstModalityProcedures.OrderByDescending(d => d.Id)
+                                     where d.DoctorId == currentUserId
                                      select new Entities.MstModalityProcedure
                                      {
                                          Id = d.Id,

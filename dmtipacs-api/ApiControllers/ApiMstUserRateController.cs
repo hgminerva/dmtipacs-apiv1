@@ -23,7 +23,14 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("list")]
         public List<Entities.MstUserRate> ListUserRate()
         {
+            var currentUser = from d in db.MstUsers
+                              where d.AspNetUserId == User.Identity.GetUserId()
+                              select d;
+
+            var currentUserId = currentUser.FirstOrDefault().Id;
+
             var userRates = from d in db.MstUserRates.OrderByDescending(d => d.Id)
+                            where d.UserId == currentUserId
                             select new Entities.MstUserRate
                             {
                                 Id = d.Id,
