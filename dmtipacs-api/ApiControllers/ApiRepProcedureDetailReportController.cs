@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace dmtipacs_api.ApiControllers
 {
-    [RoutePrefix("api/procedureDetailReport")]
+    [Authorize, RoutePrefix("api/procedureDetailReport")]
     public class ApiRepProcedureDetailReportController : ApiController
     {
         // ============

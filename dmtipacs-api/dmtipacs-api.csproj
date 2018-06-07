@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin.Cors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Cors.4.0.0\lib\net451\Microsoft.Owin.Cors.dll</HintPath>
@@ -215,6 +218,7 @@
     <Compile Include="ApiControllers\ApiMstUserRateController.cs" />
     <Compile Include="ApiControllers\ApiMstUserTypeController.cs" />
     <Compile Include="ApiControllers\ApiRepProcedureDetailReportController.cs" />
+    <Compile Include="ApiControllers\ApiRepProcedureResultController.cs" />
     <Compile Include="ApiControllers\ApiRepProcedureSummaryReportController.cs" />
     <Compile Include="ApiControllers\ApiTrnProcedureController.cs" />
     <Compile Include="ApiControllers\ApiTrnProcedureResultController.cs" />
@@ -289,6 +293,24 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Logo\alcantara.jpg" />
+    <Content Include="Images\Logo\bacalsomedical.jpg" />
+    <Content Include="Images\Logo\dmtipacs-small.png" />
+    <Content Include="Images\Logo\dmtipacs_logo.jpg" />
+    <Content Include="Images\Logo\lifehealth.jpg" />
+    <Content Include="Images\Logo\lrmedical.jpg" />
+    <Content Include="Images\Logo\margosatubig-rad.jpg" />
+    <Content Include="Images\Logo\margosatubig.jpg" />
+    <Content Include="Images\Logo\mcitpf-1.jpg" />
+    <Content Include="Images\Logo\mcitpf.jpg" />
+    <Content Include="Images\Signature\adiones.png" />
+    <Content Include="Images\Signature\alex.png" />
+    <Content Include="Images\Signature\gcadiz.png" />
+    <Content Include="Images\Signature\gespino.png" />
+    <Content Include="Images\Signature\jsarte.png" />
+    <Content Include="Images\Signature\lreveldez.png" />
+    <Content Include="Images\Signature\pouano.png" />
+    <Content Include="Images\Signature\tiffany.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
