@@ -39,7 +39,8 @@ namespace dmtipacs_api.ApiControllers
                                      {
                                          Id = d.Id,
                                          UserId = d.Id,
-                                         UserFacility = d.UserName
+                                         UserFacility = d.UserName,
+                                         UserTypeId = d.UserTypeId
                                      };
 
                 return userFacilities.ToList();
@@ -53,6 +54,7 @@ namespace dmtipacs_api.ApiControllers
                                          Id = d.Id,
                                          UserId = d.UserId,
                                          UserFacility = d.MstUser.UserName,
+                                         UserTypeId = d.MstUser1.UserTypeId
                                      };
 
                 return userFacilities.ToList();

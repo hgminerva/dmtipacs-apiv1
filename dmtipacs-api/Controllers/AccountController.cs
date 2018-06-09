@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using dmtipacs_api.Models;
 using dmtipacs_api.Providers;
 using dmtipacs_api.Results;
+using System.Linq;
 
 namespace dmtipacs_api.Controllers
 {
@@ -125,7 +126,7 @@ namespace dmtipacs_api.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -258,9 +259,9 @@ namespace dmtipacs_api.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -328,7 +329,7 @@ namespace dmtipacs_api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -336,8 +337,28 @@ namespace dmtipacs_api.Controllers
             {
                 return GetErrorResult(result);
             }
+            else
+            {
+                Data.dmtipacsdbDataContext db = new Data.dmtipacsdbDataContext();
+                var userTypes = from d in db.MstUserTypes
+                                where d.UserType.Equals("Administrator") // Should be doctor
+                                select d;
 
-            return Ok();
+                Data.MstUser newUser = new Data.MstUser
+                {
+                    UserName = model.UserName,
+                    FullName = model.FullName,
+                    Address = model.Address,
+                    ContactNumber = model.ContactNumber,
+                    UserTypeId = userTypes.FirstOrDefault().Id,
+                    AspNetUserId = user.Id
+                };
+
+                db.MstUsers.InsertOnSubmit(newUser);
+                db.SubmitChanges();
+
+                return Ok();
+            }
         }
 
         // POST api/Account/RegisterExternal
@@ -368,7 +389,7 @@ namespace dmtipacs_api.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

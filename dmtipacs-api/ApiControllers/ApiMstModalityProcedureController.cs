@@ -52,12 +52,18 @@ namespace dmtipacs_api.ApiControllers
         {
             try
             {
+                var currentUser = from d in db.MstUsers
+                                  where d.AspNetUserId == User.Identity.GetUserId()
+                                  select d;
+
+                var currentUserId = currentUser.FirstOrDefault().Id;
+
                 Data.MstModalityProcedure newModalityProcedure = new Data.MstModalityProcedure
                 {
                     ModalityId = objModalityProcedure.ModalityId,
                     ModalityProcedure = objModalityProcedure.ModalityProcedure,
                     ModalityResultTemplate = objModalityProcedure.ModalityResultTemplate,
-                    DoctorId = objModalityProcedure.DoctorId
+                    DoctorId = currentUserId
                 };
 
                 db.MstModalityProcedures.InsertOnSubmit(newModalityProcedure);
@@ -86,11 +92,17 @@ namespace dmtipacs_api.ApiControllers
 
                 if (modalityProcedure.Any())
                 {
+                    var currentUser = from d in db.MstUsers
+                                      where d.AspNetUserId == User.Identity.GetUserId()
+                                      select d;
+
+                    var currentUserId = currentUser.FirstOrDefault().Id;
+
                     var updateModalityProcedure = modalityProcedure.FirstOrDefault();
                     updateModalityProcedure.ModalityId = objModalityProcedure.ModalityId;
                     updateModalityProcedure.ModalityProcedure = objModalityProcedure.ModalityProcedure;
                     updateModalityProcedure.ModalityResultTemplate = objModalityProcedure.ModalityResultTemplate;
-                    updateModalityProcedure.DoctorId = objModalityProcedure.DoctorId;
+                    updateModalityProcedure.DoctorId = currentUserId;
 
                     db.SubmitChanges();
 

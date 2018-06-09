@@ -22,7 +22,7 @@ namespace dmtipacs_api.Data
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="philimagex")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dmtipacs")]
 	public partial class dmtipacsdbDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -265,7 +265,7 @@ namespace dmtipacs_api.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
 		public string Name
 		{
 			get
@@ -644,13 +644,11 @@ namespace dmtipacs_api.Data
 		
 		private int _Id;
 		
+		private string _UserId;
+		
 		private string _ClaimType;
 		
 		private string _ClaimValue;
-		
-		private string _User_Id;
-		
-		private string _UserId;
 		
 		private EntityRef<AspNetUser> _AspNetUser;
 		
@@ -660,14 +658,12 @@ namespace dmtipacs_api.Data
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
     partial void OnClaimTypeChanging(string value);
     partial void OnClaimTypeChanged();
     partial void OnClaimValueChanging(string value);
     partial void OnClaimValueChanged();
-    partial void OnUser_IdChanging(string value);
-    partial void OnUser_IdChanged();
-    partial void OnUserIdChanging(string value);
-    partial void OnUserIdChanged();
     #endregion
 		
 		public AspNetUserClaim()
@@ -692,6 +688,30 @@ namespace dmtipacs_api.Data
 					this._Id = value;
 					this.SendPropertyChanged("Id");
 					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._AspNetUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
 				}
 			}
 		}
@@ -736,51 +756,7 @@ namespace dmtipacs_api.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Id", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
-		public string User_Id
-		{
-			get
-			{
-				return this._User_Id;
-			}
-			set
-			{
-				if ((this._User_Id != value))
-				{
-					if (this._AspNetUser.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUser_IdChanging(value);
-					this.SendPropertyChanging();
-					this._User_Id = value;
-					this.SendPropertyChanged("User_Id");
-					this.OnUser_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128)")]
-		public string UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserClaim", Storage="_AspNetUser", ThisKey="User_Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserClaim", Storage="_AspNetUser", ThisKey="UserId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public AspNetUser AspNetUser
 		{
 			get
@@ -803,11 +779,11 @@ namespace dmtipacs_api.Data
 					if ((value != null))
 					{
 						value.AspNetUserClaims.Add(this);
-						this._User_Id = value.Id;
+						this._UserId = value.Id;
 					}
 					else
 					{
-						this._User_Id = default(string);
+						this._UserId = default(string);
 					}
 					this.SendPropertyChanged("AspNetUser");
 				}
@@ -841,11 +817,11 @@ namespace dmtipacs_api.Data
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _UserId;
-		
 		private string _LoginProvider;
 		
 		private string _ProviderKey;
+		
+		private string _UserId;
 		
 		private EntityRef<AspNetUser> _AspNetUser;
 		
@@ -853,42 +829,18 @@ namespace dmtipacs_api.Data
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnUserIdChanging(string value);
-    partial void OnUserIdChanged();
     partial void OnLoginProviderChanging(string value);
     partial void OnLoginProviderChanged();
     partial void OnProviderKeyChanging(string value);
     partial void OnProviderKeyChanged();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
     #endregion
 		
 		public AspNetUserLogin()
 		{
 			this._AspNetUser = default(EntityRef<AspNetUser>);
 			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					if (this._AspNetUser.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginProvider", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
@@ -927,6 +879,30 @@ namespace dmtipacs_api.Data
 					this._ProviderKey = value;
 					this.SendPropertyChanged("ProviderKey");
 					this.OnProviderKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._AspNetUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
 				}
 			}
 		}
@@ -1162,31 +1138,27 @@ namespace dmtipacs_api.Data
 		
 		private string _Id;
 		
-		private string _UserName;
+		private string _Email;
+		
+		private bool _EmailConfirmed;
 		
 		private string _PasswordHash;
 		
 		private string _SecurityStamp;
 		
-		private string _Discriminator;
-		
-		private string _FullName;
-		
-		private string _Email;
-		
-		private System.Nullable<bool> _EmailConfirmed;
-		
 		private string _PhoneNumber;
 		
-		private System.Nullable<bool> _PhoneNumberConfirmed;
+		private bool _PhoneNumberConfirmed;
 		
-		private System.Nullable<bool> _TwoFactorEnabled;
+		private bool _TwoFactorEnabled;
 		
 		private System.Nullable<System.DateTime> _LockoutEndDateUtc;
 		
-		private System.Nullable<bool> _LockoutEnabled;
+		private bool _LockoutEnabled;
 		
-		private System.Nullable<int> _AccessFailedCount;
+		private int _AccessFailedCount;
+		
+		private string _UserName;
 		
 		private EntitySet<AspNetUserClaim> _AspNetUserClaims;
 		
@@ -1202,32 +1174,28 @@ namespace dmtipacs_api.Data
     partial void OnCreated();
     partial void OnIdChanging(string value);
     partial void OnIdChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnEmailConfirmedChanging(bool value);
+    partial void OnEmailConfirmedChanged();
     partial void OnPasswordHashChanging(string value);
     partial void OnPasswordHashChanged();
     partial void OnSecurityStampChanging(string value);
     partial void OnSecurityStampChanged();
-    partial void OnDiscriminatorChanging(string value);
-    partial void OnDiscriminatorChanged();
-    partial void OnFullNameChanging(string value);
-    partial void OnFullNameChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnEmailConfirmedChanging(System.Nullable<bool> value);
-    partial void OnEmailConfirmedChanged();
     partial void OnPhoneNumberChanging(string value);
     partial void OnPhoneNumberChanged();
-    partial void OnPhoneNumberConfirmedChanging(System.Nullable<bool> value);
+    partial void OnPhoneNumberConfirmedChanging(bool value);
     partial void OnPhoneNumberConfirmedChanged();
-    partial void OnTwoFactorEnabledChanging(System.Nullable<bool> value);
+    partial void OnTwoFactorEnabledChanging(bool value);
     partial void OnTwoFactorEnabledChanged();
     partial void OnLockoutEndDateUtcChanging(System.Nullable<System.DateTime> value);
     partial void OnLockoutEndDateUtcChanged();
-    partial void OnLockoutEnabledChanging(System.Nullable<bool> value);
+    partial void OnLockoutEnabledChanging(bool value);
     partial void OnLockoutEnabledChanged();
-    partial void OnAccessFailedCountChanging(System.Nullable<int> value);
+    partial void OnAccessFailedCountChanging(int value);
     partial void OnAccessFailedCountChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
     #endregion
 		
 		public AspNetUser()
@@ -1259,22 +1227,42 @@ namespace dmtipacs_api.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(MAX)")]
-		public string UserName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256)")]
+		public string Email
 		{
 			get
 			{
-				return this._UserName;
+				return this._Email;
 			}
 			set
 			{
-				if ((this._UserName != value))
+				if ((this._Email != value))
 				{
-					this.OnUserNameChanging(value);
+					this.OnEmailChanging(value);
 					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailConfirmed", DbType="Bit NOT NULL")]
+		public bool EmailConfirmed
+		{
+			get
+			{
+				return this._EmailConfirmed;
+			}
+			set
+			{
+				if ((this._EmailConfirmed != value))
+				{
+					this.OnEmailConfirmedChanging(value);
+					this.SendPropertyChanging();
+					this._EmailConfirmed = value;
+					this.SendPropertyChanged("EmailConfirmed");
+					this.OnEmailConfirmedChanged();
 				}
 			}
 		}
@@ -1319,86 +1307,6 @@ namespace dmtipacs_api.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Discriminator", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
-		public string Discriminator
-		{
-			get
-			{
-				return this._Discriminator;
-			}
-			set
-			{
-				if ((this._Discriminator != value))
-				{
-					this.OnDiscriminatorChanging(value);
-					this.SendPropertyChanging();
-					this._Discriminator = value;
-					this.SendPropertyChanged("Discriminator");
-					this.OnDiscriminatorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this.OnFullNameChanging(value);
-					this.SendPropertyChanging();
-					this._FullName = value;
-					this.SendPropertyChanged("FullName");
-					this.OnFullNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailConfirmed", DbType="Bit")]
-		public System.Nullable<bool> EmailConfirmed
-		{
-			get
-			{
-				return this._EmailConfirmed;
-			}
-			set
-			{
-				if ((this._EmailConfirmed != value))
-				{
-					this.OnEmailConfirmedChanging(value);
-					this.SendPropertyChanging();
-					this._EmailConfirmed = value;
-					this.SendPropertyChanged("EmailConfirmed");
-					this.OnEmailConfirmedChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(MAX)")]
 		public string PhoneNumber
 		{
@@ -1419,8 +1327,8 @@ namespace dmtipacs_api.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumberConfirmed", DbType="Bit")]
-		public System.Nullable<bool> PhoneNumberConfirmed
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumberConfirmed", DbType="Bit NOT NULL")]
+		public bool PhoneNumberConfirmed
 		{
 			get
 			{
@@ -1439,8 +1347,8 @@ namespace dmtipacs_api.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TwoFactorEnabled", DbType="Bit")]
-		public System.Nullable<bool> TwoFactorEnabled
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TwoFactorEnabled", DbType="Bit NOT NULL")]
+		public bool TwoFactorEnabled
 		{
 			get
 			{
@@ -1479,8 +1387,8 @@ namespace dmtipacs_api.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEnabled", DbType="Bit")]
-		public System.Nullable<bool> LockoutEnabled
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEnabled", DbType="Bit NOT NULL")]
+		public bool LockoutEnabled
 		{
 			get
 			{
@@ -1499,8 +1407,8 @@ namespace dmtipacs_api.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessFailedCount", DbType="Int")]
-		public System.Nullable<int> AccessFailedCount
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessFailedCount", DbType="Int NOT NULL")]
+		public int AccessFailedCount
 		{
 			get
 			{
@@ -1519,7 +1427,27 @@ namespace dmtipacs_api.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserClaim", Storage="_AspNetUserClaims", ThisKey="Id", OtherKey="User_Id")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserClaim", Storage="_AspNetUserClaims", ThisKey="Id", OtherKey="UserId")]
 		public EntitySet<AspNetUserClaim> AspNetUserClaims
 		{
 			get
