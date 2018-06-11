@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace dmtipacs_api.ApiControllers
 {
@@ -48,19 +49,32 @@ namespace dmtipacs_api.ApiControllers
         {
             try
             {
-                Data.TrnProcedureResult newProcedureResult = new Data.TrnProcedureResult
+                var currentUser = from d in db.MstUsers
+                                  where d.AspNetUserId == User.Identity.GetUserId()
+                                  select d;
+
+                var currentUserTypeId = currentUser.FirstOrDefault().UserTypeId;
+
+                if (currentUserTypeId == 2)
                 {
-                    ProcedureId = objProcedureResult.ProcedureId,
-                    ModalityProcedureId = objProcedureResult.ModalityProcedureId,
-                    Result = objProcedureResult.Result,
-                    DoctorId = objProcedureResult.DoctorId,
-                    DoctorDateTime = DateTime.Now
-                };
+                    Data.TrnProcedureResult newProcedureResult = new Data.TrnProcedureResult
+                    {
+                        ProcedureId = objProcedureResult.ProcedureId,
+                        ModalityProcedureId = objProcedureResult.ModalityProcedureId,
+                        Result = objProcedureResult.Result,
+                        DoctorId = objProcedureResult.DoctorId,
+                        DoctorDateTime = DateTime.Now
+                    };
 
-                db.TrnProcedureResults.InsertOnSubmit(newProcedureResult);
-                db.SubmitChanges();
+                    db.TrnProcedureResults.InsertOnSubmit(newProcedureResult);
+                    db.SubmitChanges();
 
-                return Request.CreateResponse(HttpStatusCode.OK);
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
             }
             catch (Exception e)
             {
@@ -77,26 +91,39 @@ namespace dmtipacs_api.ApiControllers
         {
             try
             {
-                var procedureResult = from d in db.TrnProcedureResults
-                                      where d.Id == Convert.ToInt32(id)
-                                      select d;
+                var currentUser = from d in db.MstUsers
+                                  where d.AspNetUserId == User.Identity.GetUserId()
+                                  select d;
 
-                if (procedureResult.Any())
+                var currentUserTypeId = currentUser.FirstOrDefault().UserTypeId;
+
+                if (currentUserTypeId == 2)
                 {
-                    var updateProcedureResult = procedureResult.FirstOrDefault();
-                    updateProcedureResult.ProcedureId = objProcedureResult.ProcedureId;
-                    updateProcedureResult.ModalityProcedureId = objProcedureResult.ModalityProcedureId;
-                    updateProcedureResult.Result = objProcedureResult.Result;
-                    updateProcedureResult.DoctorId = objProcedureResult.DoctorId;
-                    updateProcedureResult.DoctorDateTime = DateTime.Now;
+                    var procedureResult = from d in db.TrnProcedureResults
+                                          where d.Id == Convert.ToInt32(id)
+                                          select d;
 
-                    db.SubmitChanges();
+                    if (procedureResult.Any())
+                    {
+                        var updateProcedureResult = procedureResult.FirstOrDefault();
+                        updateProcedureResult.ProcedureId = objProcedureResult.ProcedureId;
+                        updateProcedureResult.ModalityProcedureId = objProcedureResult.ModalityProcedureId;
+                        updateProcedureResult.Result = objProcedureResult.Result;
+                        updateProcedureResult.DoctorId = objProcedureResult.DoctorId;
+                        updateProcedureResult.DoctorDateTime = DateTime.Now;
 
-                    return Request.CreateResponse(HttpStatusCode.OK);
+                        db.SubmitChanges();
+
+                        return Request.CreateResponse(HttpStatusCode.OK);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound);
+                    }
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
             }
             catch (Exception e)
