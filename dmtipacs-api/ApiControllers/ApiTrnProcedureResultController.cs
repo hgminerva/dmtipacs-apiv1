@@ -53,6 +53,7 @@ namespace dmtipacs_api.ApiControllers
                                   where d.AspNetUserId == User.Identity.GetUserId()
                                   select d;
 
+                var currentUserId = currentUser.FirstOrDefault().Id;
                 var currentUserTypeId = currentUser.FirstOrDefault().UserTypeId;
 
                 if (currentUserTypeId == 2)
@@ -62,7 +63,7 @@ namespace dmtipacs_api.ApiControllers
                         ProcedureId = objProcedureResult.ProcedureId,
                         ModalityProcedureId = objProcedureResult.ModalityProcedureId,
                         Result = objProcedureResult.Result,
-                        DoctorId = objProcedureResult.DoctorId,
+                        DoctorId = currentUserId,
                         DoctorDateTime = DateTime.Now
                     };
 
@@ -95,6 +96,7 @@ namespace dmtipacs_api.ApiControllers
                                   where d.AspNetUserId == User.Identity.GetUserId()
                                   select d;
 
+                var currentUserId = currentUser.FirstOrDefault().Id;
                 var currentUserTypeId = currentUser.FirstOrDefault().UserTypeId;
 
                 if (currentUserTypeId == 2)
@@ -109,7 +111,7 @@ namespace dmtipacs_api.ApiControllers
                         updateProcedureResult.ProcedureId = objProcedureResult.ProcedureId;
                         updateProcedureResult.ModalityProcedureId = objProcedureResult.ModalityProcedureId;
                         updateProcedureResult.Result = objProcedureResult.Result;
-                        updateProcedureResult.DoctorId = objProcedureResult.DoctorId;
+                        updateProcedureResult.DoctorId = currentUserId;
                         updateProcedureResult.DoctorDateTime = DateTime.Now;
 
                         db.SubmitChanges();

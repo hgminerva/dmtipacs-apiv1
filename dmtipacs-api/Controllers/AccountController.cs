@@ -341,7 +341,7 @@ namespace dmtipacs_api.Controllers
             {
                 Data.dmtipacsdbDataContext db = new Data.dmtipacsdbDataContext();
                 var userTypes = from d in db.MstUserTypes
-                                where d.UserType.Equals("Administrator") // Should be doctor
+                                where d.UserType.Equals("Doctor")
                                 select d;
 
                 Data.MstUser newUser = new Data.MstUser
