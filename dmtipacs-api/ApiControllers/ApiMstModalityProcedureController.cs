@@ -29,7 +29,7 @@ namespace dmtipacs_api.ApiControllers
 
             var currentUserId = currentUser.FirstOrDefault().Id;
 
-            var modalityProcedures = from d in db.MstModalityProcedures.OrderByDescending(d => d.Id)
+            var modalityProcedures = from d in db.MstModalityProcedures
                                      where d.DoctorId == currentUserId
                                      select new Entities.MstModalityProcedure
                                      {
@@ -41,7 +41,7 @@ namespace dmtipacs_api.ApiControllers
                                          DoctorId = d.DoctorId
                                      };
 
-            return modalityProcedures.ToList();
+            return modalityProcedures.OrderBy(d => d.ModalityProcedure).ToList();
         }
 
         // ========================
