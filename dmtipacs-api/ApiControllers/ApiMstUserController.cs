@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace dmtipacs_api.ApiControllers
 {
@@ -118,6 +119,35 @@ namespace dmtipacs_api.ApiControllers
                 Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
+        }
+
+        // ==============
+        // Current - User
+        // ==============
+        [HttpGet, Route("current")]
+        public Entities.MstUser CurrentUser()
+        {
+            var currentUser = from d in db.MstUsers
+                              where d.AspNetUserId == User.Identity.GetUserId()
+                              select d;
+
+            var currentUserId = currentUser.FirstOrDefault().Id;
+
+            var user = from d in db.MstUsers
+                       where d.Id == Convert.ToUInt32(currentUserId)
+                       select new Entities.MstUser
+                       {
+                           Id = d.Id,
+                           UserName = d.UserName,
+                           FullName = d.FullName,
+                           Address = d.Address,
+                           ContactNumber = d.ContactNumber,
+                           UserTypeId = d.UserTypeId,
+                           UserType = d.MstUserType.UserType,
+                           AspNetUserId = d.AspNetUserId
+                       };
+
+            return user.FirstOrDefault();
         }
     }
 }

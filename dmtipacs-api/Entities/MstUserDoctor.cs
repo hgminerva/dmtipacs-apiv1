@@ -12,7 +12,5 @@ namespace dmtipacs_api.Entities
         public String UserFacility { get; set; }
         public Int32 DoctorId { get; set; }
         public String Doctor { get; set; }
-        public Int32 UserTypeId { get; set; }
-        public Int32 CurrentUserId { get; set; }
     }
 }

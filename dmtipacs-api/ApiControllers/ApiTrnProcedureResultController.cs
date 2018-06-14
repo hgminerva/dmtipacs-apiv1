@@ -23,7 +23,7 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("list/{procedureId}")]
         public List<Entities.TrnProcedureResult> ListProcedureResult(String procedureId)
         {
-            var procedureResults = from d in db.TrnProcedureResults.OrderByDescending(d => d.Id)
+            var procedureResults = from d in db.TrnProcedureResults
                                    where d.ProcedureId == Convert.ToInt32(procedureId)
                                    select new Entities.TrnProcedureResult
                                    {
