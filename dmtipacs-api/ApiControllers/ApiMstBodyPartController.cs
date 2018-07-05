@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace dmtipacs_api.ApiControllers
 {
@@ -22,14 +23,25 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("list")]
         public List<Entities.MstBodyPart> ListBodyPart()
         {
-            var bodyParts = from d in db.MstBodyParts.OrderByDescending(d => d.Id)
-                            select new Entities.MstBodyPart
-                            {
-                                Id = d.Id,
-                                BodyPart = d.BodyPart
-                            };
+            var currentUser = from d in db.MstUsers
+                              where d.AspNetUserId == User.Identity.GetUserId()
+                              select d;
 
-            return bodyParts.ToList();
+            if (currentUser.FirstOrDefault().Id == 1)
+            {
+                var bodyParts = from d in db.MstBodyParts.OrderByDescending(d => d.Id)
+                                select new Entities.MstBodyPart
+                                {
+                                    Id = d.Id,
+                                    BodyPart = d.BodyPart
+                                };
+
+                return bodyParts.ToList();
+            }
+            else
+            {
+                return new List<Entities.MstBodyPart>();
+            }
         }
 
         // ===============
@@ -40,15 +52,26 @@ namespace dmtipacs_api.ApiControllers
         {
             try
             {
-                Data.MstBodyPart newBodyPart = new Data.MstBodyPart
+                var currentUser = from d in db.MstUsers
+                                  where d.AspNetUserId == User.Identity.GetUserId()
+                                  select d;
+
+                if (currentUser.FirstOrDefault().Id == 1)
                 {
-                    BodyPart = objBodyPart.BodyPart
-                };
+                    Data.MstBodyPart newBodyPart = new Data.MstBodyPart
+                    {
+                        BodyPart = objBodyPart.BodyPart
+                    };
 
-                db.MstBodyParts.InsertOnSubmit(newBodyPart);
-                db.SubmitChanges();
+                    db.MstBodyParts.InsertOnSubmit(newBodyPart);
+                    db.SubmitChanges();
 
-                return Request.CreateResponse(HttpStatusCode.OK);
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
             }
             catch (Exception e)
             {
@@ -65,22 +88,33 @@ namespace dmtipacs_api.ApiControllers
         {
             try
             {
-                var bodyPart = from d in db.MstBodyParts
-                               where d.Id == Convert.ToInt32(id)
-                               select d;
+                var currentUser = from d in db.MstUsers
+                                  where d.AspNetUserId == User.Identity.GetUserId()
+                                  select d;
 
-                if (bodyPart.Any())
+                if (currentUser.FirstOrDefault().Id == 1)
                 {
-                    var updateBodyPart = bodyPart.FirstOrDefault();
-                    updateBodyPart.BodyPart = objBodyPart.BodyPart;
+                    var bodyPart = from d in db.MstBodyParts
+                                   where d.Id == Convert.ToInt32(id)
+                                   select d;
 
-                    db.SubmitChanges();
+                    if (bodyPart.Any())
+                    {
+                        var updateBodyPart = bodyPart.FirstOrDefault();
+                        updateBodyPart.BodyPart = objBodyPart.BodyPart;
 
-                    return Request.CreateResponse(HttpStatusCode.OK);
+                        db.SubmitChanges();
+
+                        return Request.CreateResponse(HttpStatusCode.OK);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound);
+                    }
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
             }
             catch (Exception e)
@@ -98,20 +132,31 @@ namespace dmtipacs_api.ApiControllers
         {
             try
             {
-                var bodyPart = from d in db.MstBodyParts
-                               where d.Id == Convert.ToInt32(id)
-                               select d;
+                var currentUser = from d in db.MstUsers
+                                  where d.AspNetUserId == User.Identity.GetUserId()
+                                  select d;
 
-                if (bodyPart.Any())
+                if (currentUser.FirstOrDefault().Id == 1)
                 {
-                    db.MstBodyParts.DeleteOnSubmit(bodyPart.First());
-                    db.SubmitChanges();
+                    var bodyPart = from d in db.MstBodyParts
+                                   where d.Id == Convert.ToInt32(id)
+                                   select d;
 
-                    return Request.CreateResponse(HttpStatusCode.OK);
+                    if (bodyPart.Any())
+                    {
+                        db.MstBodyParts.DeleteOnSubmit(bodyPart.First());
+                        db.SubmitChanges();
+
+                        return Request.CreateResponse(HttpStatusCode.OK);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound);
+                    }
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
             }
             catch (Exception e)
