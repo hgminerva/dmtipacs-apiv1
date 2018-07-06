@@ -303,6 +303,8 @@
     <Content Include="Images\Logo\margosatubig.jpg" />
     <Content Include="Images\Logo\mcitpf-1.jpg" />
     <Content Include="Images\Logo\mcitpf.jpg" />
+    <Content Include="Images\Logo\samch.jpg" />
+    <Content Include="Images\Logo\samchdoh.jpg" />
     <Content Include="Images\Signature\adiones.png" />
     <Content Include="Images\Signature\alex.png" />
     <Content Include="Images\Signature\gcadiz.png" />
