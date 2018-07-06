@@ -23,20 +23,31 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("list")]
         public List<Entities.MstUser> ListUser()
         {
-            var users = from d in db.MstUsers
-                        select new Entities.MstUser
-                        {
-                            Id = d.Id,
-                            UserName = d.UserName,
-                            FullName = d.FullName,
-                            Address = d.Address,
-                            ContactNumber = d.ContactNumber,
-                            UserTypeId = d.UserTypeId,
-                            UserType = d.MstUserType.UserType,
-                            AspNetUserId = d.AspNetUserId
-                        };
+            var currentUser = from d in db.MstUsers
+                              where d.AspNetUserId == User.Identity.GetUserId()
+                              select d;
 
-            return users.ToList();
+            if (currentUser.FirstOrDefault().Id == 1)
+            {
+                var users = from d in db.MstUsers
+                            select new Entities.MstUser
+                            {
+                                Id = d.Id,
+                                UserName = d.UserName,
+                                FullName = d.FullName,
+                                Address = d.Address,
+                                ContactNumber = d.ContactNumber,
+                                UserTypeId = d.UserTypeId,
+                                UserType = d.MstUserType.UserType,
+                                AspNetUserId = d.AspNetUserId
+                            };
+
+                return users.ToList();
+            }
+            else
+            {
+                return new List<Entities.MstUser>();
+            }
         }
 
         // ========================
@@ -68,21 +79,32 @@ namespace dmtipacs_api.ApiControllers
         [HttpGet, Route("detail/{id}")]
         public Entities.MstUser DetailUser(String id)
         {
-            var user = from d in db.MstUsers
-                       where d.Id == Convert.ToUInt32(id)
-                       select new Entities.MstUser
-                       {
-                           Id = d.Id,
-                           UserName = d.UserName,
-                           FullName = d.FullName,
-                           Address = d.Address,
-                           ContactNumber = d.ContactNumber,
-                           UserTypeId = d.UserTypeId,
-                           UserType = d.MstUserType.UserType,
-                           AspNetUserId = d.AspNetUserId
-                       };
+            var currentUser = from d in db.MstUsers
+                              where d.AspNetUserId == User.Identity.GetUserId()
+                              select d;
 
-            return user.FirstOrDefault();
+            if (currentUser.FirstOrDefault().Id == 1)
+            {
+                var user = from d in db.MstUsers
+                           where d.Id == Convert.ToUInt32(id)
+                           select new Entities.MstUser
+                           {
+                               Id = d.Id,
+                               UserName = d.UserName,
+                               FullName = d.FullName,
+                               Address = d.Address,
+                               ContactNumber = d.ContactNumber,
+                               UserTypeId = d.UserTypeId,
+                               UserType = d.MstUserType.UserType,
+                               AspNetUserId = d.AspNetUserId
+                           };
+
+                return user.FirstOrDefault();
+            }
+            else
+            {
+                return new Entities.MstUser();
+            }
         }
 
         // =============
