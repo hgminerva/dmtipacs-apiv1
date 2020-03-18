@@ -797,10 +797,16 @@ namespace dmtipacs_api.ApiControllers
                 base.OnOpenDocument(writer, document);
 
                 var hp1 = new Paragraph("Republic of the Philippines", BodyFont);
+                var hp1a = new Paragraph("Department of Health", BodyFont);
+                var hp1b = new Paragraph("Regional Health Office - Central Visayas", BodyFont);
                 hp1.Alignment = Element.ALIGN_CENTER;
+                hp1a.Alignment = Element.ALIGN_CENTER;
+                hp1b.Alignment = Element.ALIGN_CENTER;
                 document.Add(hp1);
+                document.Add(hp1a);
+                document.Add(hp1b);
 
-                var hp2 = new Paragraph(DocumentTitle, TitleFont);
+                var hp2 = new Paragraph("SAINT ANTHONY MOTHER AND CHILD HOSPITAL", TitleFont);
                 hp2.Alignment = Element.ALIGN_CENTER;
                 document.Add(hp2);
 
@@ -814,12 +820,12 @@ namespace dmtipacs_api.ApiControllers
 
                 Image image1 = Image.GetInstance(HttpContext.Current.Server.MapPath("/Images/Logo/samch.jpg"));
                 image1.ScaleToFit(200f, 100f);
-                image1.SetAbsolutePosition(50, 670);
+                image1.SetAbsolutePosition(10, 670);
                 document.Add(image1);
 
                 Image image2 = Image.GetInstance(HttpContext.Current.Server.MapPath("/Images/Logo/samchdoh.jpg"));
                 image2.ScaleToFit(200f, 100f);
-                image2.SetAbsolutePosition(470, 670);
+                image2.SetAbsolutePosition(510, 670);
                 document.Add(image2);
 
                 PdfContentByte cb = writer.DirectContent;
