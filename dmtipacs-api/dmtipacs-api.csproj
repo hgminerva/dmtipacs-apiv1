@@ -307,6 +307,7 @@
     <Content Include="Images\Logo\samchdoh.jpg" />
     <Content Include="Images\Signature\adiones.png" />
     <Content Include="Images\Signature\alex.png" />
+    <Content Include="Images\Signature\allen.png" />
     <Content Include="Images\Signature\gcadiz.png" />
     <Content Include="Images\Signature\gespino.png" />
     <Content Include="Images\Signature\jsarte.png" />
@@ -342,6 +343,8 @@
       <LastGenOutput>dmtipacsdb.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Properties\PublishProfiles\dmtipacsv3-api - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\dmtipacsv3-api - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
